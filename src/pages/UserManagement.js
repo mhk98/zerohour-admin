@@ -7,6 +7,7 @@ import {
   ModalBody,
   Input,
   Button,
+  Select,
 } from "@windmill/react-ui";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -42,10 +43,11 @@ function UserManagement() {
     formData.append("FirstName", data.FirstName);
     formData.append("LastName", data.LastName);
     formData.append("Email", data.Email);
+    formData.append("CreatedOn", `${First_Name} ${Last_Name}`);
     formData.append("Password", data.Password);
     formData.append("Phone", data.Phone);
+    formData.append("Address", data.Address);
     formData.append("Role", data.Role);
-
     if (file) {
       formData.append("image", file);
     }
@@ -140,6 +142,22 @@ function UserManagement() {
                         </p>
                       )}
                     </div>
+                    <div className="mb-4">
+                      <label className="block text-sm mb-1 text-gray-700">
+                        Address
+                      </label>
+                      <Input
+                        type="text"
+                        {...register("Address")}
+                        onKeyDown={handleEnter}
+                        className="input input-bordered w-full form-control shadow-md p-3"
+                      />
+                      {errors.Address && (
+                        <p className="text-red-500 text-sm mt-1">
+                          {errors.Address.message}
+                        </p>
+                      )}
+                    </div>
 
                     <div className="mb-4">
                       <label className="block text-sm mb-1 text-gray-700">
@@ -157,7 +175,6 @@ function UserManagement() {
                         </p>
                       )}
                     </div>
-
                     <div className="mb-4">
                       <label className="block text-sm mb-1 text-gray-700">
                         Password
@@ -184,7 +201,8 @@ function UserManagement() {
                         className="input input-bordered w-full p-2 border border-gray-300"
                       >
                         <option value="">Select Role</option>
-                        <option value="student">User</option>
+                        <option value="student">Student</option>
+                        <option value="employee">Employee</option>
                         <option value="admin">Admin</option>
                         <option value="superAdmin">Super Admin</option>
                       </select>
@@ -195,7 +213,7 @@ function UserManagement() {
                         </p>
                       )}
                     </div>
-
+                
                     <div className="form-group">
                       <label className="font-weight-700">Profile Image</label>
                       <input

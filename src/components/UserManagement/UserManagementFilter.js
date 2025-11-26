@@ -7,15 +7,15 @@ import {
   ModalBody,
   Button,
 } from "@windmill/react-ui";
-import toast from "react-hot-toast";
-import { BiSolidTrashAlt } from "react-icons/bi";
-import { LiaEditSolid } from "react-icons/lia";
-import { useForm } from "react-hook-form";
 import {
   useDeleteUserMutation,
   useGetAllUserQuery,
   useUpdateUserMutation,
 } from "../../features/auth/auth";
+import toast from "react-hot-toast";
+import { BiSolidTrashAlt } from "react-icons/bi";
+import { LiaEditSolid } from "react-icons/lia";
+import { useForm } from "react-hook-form";
 
 const UserManagementFilter = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -91,10 +91,10 @@ const UserManagementFilter = () => {
         refetch();
         setIsModalOpen(false);
       } else {
-        console.error(res.error?.data?.message || "Update failed.");
+        toast.error(res.error?.data?.message || "Update failed.");
       }
     } catch {
-      console.error("An unexpected error occurred.");
+      toast.error("An unexpected error occurred.");
     }
   };
 
@@ -161,7 +161,7 @@ const UserManagementFilter = () => {
   return (
     <div className="w-full bg-white rounded-lg shadow-sm p-4">
       {/* Search Filters */}
-      {/* <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
         <Label>
           <span>First Name</span>
           <Input
@@ -203,7 +203,7 @@ const UserManagementFilter = () => {
             Clear
           </Button>
         </div>
-      </div> */}
+      </div>
 
       {/* Table */}
       <div className="w-full overflow-x-auto">
@@ -215,6 +215,7 @@ const UserManagementFilter = () => {
               <th className="p-3">Email</th>
               <th className="p-3">Phone</th>
               <th className="p-3">Role</th>
+              <th className="p-3">Profile</th>
               <th className="p-3">Actions</th>
             </tr>
           </thead>
@@ -231,14 +232,15 @@ const UserManagementFilter = () => {
                 <td className="p-3">{user.Email}</td>
                 <td className="p-3">{user.Phone}</td>
                 <td className="p-3">{user.Role}</td>
+                <td className="p-3">{user.Profile}</td>
                 <td className="p-3 flex gap-2 text-red-500">
                   <BiSolidTrashAlt
-                    onClick={() => handleDeleteUser(user.Id)}
+                    onClick={() => handleDeleteUser(user.id)}
                     className="cursor-pointer"
                   />
                   <LiaEditSolid
                     onClick={() => {
-                      setUserId(user.Id);
+                      setUserId(user.id);
                       setIsModalOpen(true);
                       reset(); // optional: preload data here
                     }}
@@ -323,68 +325,6 @@ const UserManagementFilter = () => {
         <ModalHeader className="mb-4">Edit User Information</ModalHeader>
         <ModalBody>
           <form onSubmit={handleSubmit(onFormEdit)} className="space-y-4">
-            <div className="mb-4">
-              <label className="block text-sm mb-1 text-gray-700">
-                First Name
-              </label>
-              <Input
-                type="text"
-                {...register("FirstName")}
-                onKeyDown={handleEnter}
-                className="input input-bordered w-full form-control shadow-md p-3"
-              />
-              {errors.FirstName && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.FirstName.message}
-                </p>
-              )}
-            </div>
-            <div className="mb-4">
-              <label className="block text-sm mb-1 text-gray-700">
-                Last Name
-              </label>
-              <Input
-                type="text"
-                {...register("LastName")}
-                onKeyDown={handleEnter}
-                className="input input-bordered w-full form-control shadow-md p-3"
-              />
-              {errors.LastName && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.LastName.message}
-                </p>
-              )}
-            </div>
-            <div className="mb-4">
-              <label className="block text-sm mb-1 text-gray-700">
-                Mobile Number
-              </label>
-              <Input
-                type="number"
-                {...register("Phone")}
-                onKeyDown={handleEnter}
-                className="input input-bordered w-full form-control shadow-md p-3"
-              />
-              {errors.Phone && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.Phone.message}
-                </p>
-              )}
-            </div>
-            <div className="mb-4">
-              <label className="block text-sm mb-1 text-gray-700">Email</label>
-              <Input
-                type="email"
-                {...register("Email")}
-                onKeyDown={handleEnter}
-                className="input input-bordered w-full form-control shadow-md p-3"
-              />
-              {errors.Email && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.email.message}
-                </p>
-              )}
-            </div>
             <div>
               <Label>
                 <span>Role</span>
@@ -394,7 +334,8 @@ const UserManagementFilter = () => {
                   className="input input-bordered w-full p-2 border border-gray-300"
                 >
                   <option value="">Select Role</option>
-                  <option value="user">User</option>
+                  <option value="student">Student</option>
+                  <option value="employee">Employee</option>
                   <option value="admin">Admin</option>
                   <option value="superAdmin">Super Admin</option>
                 </select>
@@ -403,6 +344,44 @@ const UserManagementFilter = () => {
                 <p className="text-red-500 text-sm">{errors.Role.message}</p>
               )}
             </div>
+            <div>
+              <Label>
+                <span>Profile Status</span>
+                <select
+                  {...register("Profile")}
+                  onKeyDown={handleEnter}
+                  className="input input-bordered w-full p-2 border border-gray-300"
+                >
+                  <option value="">Select Status</option>
+                  <option value="active">Active</option>
+                  <option value="archive">Archive</option>
+                </select>
+              </Label>
+              {errors.Profile && (
+                <p className="text-red-500 text-sm">{errors.Profile.message}</p>
+              )}
+            </div>
+
+            <div>
+              <Label>
+                <span>Regional Status</span>
+                <select
+                  {...register("RegionalStatus")}
+                  onKeyDown={handleEnter}
+                  className="input input-bordered w-full p-2 border border-gray-300"
+                >
+                  <option value="">Select Regional Status</option>
+                  <option value="Manager">Manager</option>
+                  <option value="Employee">Employee</option>
+                </select>
+              </Label>
+              {errors.RegionalStatus && (
+                <p className="text-red-500 text-sm">
+                  {errors.RegionalStatus.message}
+                </p>
+              )}
+            </div>
+
             <div>
               <label className="block text-sm mb-1 text-gray-700 dark:text-gray-300">
                 New Password
