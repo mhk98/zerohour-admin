@@ -241,7 +241,7 @@ const OrderTable = () => {
                     <div key={p.id} className="flex items-center gap-2 mb-1">
                       {p.thumbnailImage && (
                         <img
-                          src={`http://localhost:5000${p.thumbnailImage}`}
+                          src={`https://zerohour-backend.onrender.com${p.thumbnailImage}`}
                           alt={p.title}
                           className="w-8 h-8 object-cover rounded"
                         />

@@ -149,7 +149,7 @@ export default function CategoryTable() {
                       {item.icon ? (
                         <img
                           className="w-10 h-10 object-cover"
-                          src={`http://localhost:5000/${item.icon}`}
+                          src={`https://zerohour-backend.onrender.com/${item.icon}`}
                           alt="Feature"
                         />
                       ) : (

@@ -213,14 +213,14 @@ const BlogTable = () => {
                 </td>
                 <td className="p-3">
                   <img
-                    src={`http://localhost:5000${blog.image}`}
+                    src={`https://zerohour-backend.onrender.com${blog.image}`}
                     alt={blog.title}
                     className="w-16 h-16 object-cover rounded"
                   />
                 </td>
                 <td className="p-3">
                   <img
-                    src={`http://localhost:5000${blog.image1}`}
+                    src={`https://zerohour-backend.onrender.com${blog.image1}`}
                     alt={blog.title}
                     className="w-16 h-16 object-cover rounded"
                   />

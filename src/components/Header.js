@@ -34,7 +34,7 @@ export default function Header() {
     const fetchUser = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/v1/user/${id}`
+          `https://zerohour-backend.onrender.com/api/v1/user/${id}`
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -120,7 +120,7 @@ export default function Header() {
               className="w-8 h-8 rounded-full object-cover"
               src={
                 user?.image && user?.image !== "null"
-                  ? `http://localhost:5000${user?.image}`
+                  ? `https://zerohour-backend.onrender.com${user?.image}`
                   : "https://i.pravatar.cc/300"
               }
               alt="User avatar"

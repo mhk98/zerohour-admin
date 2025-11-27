@@ -26,7 +26,7 @@ const FilterPanel = () => {
         );
 
         const response = await axios.get(
-          "http://localhost:5000/api/v1/application/status",
+          "https://zerohour-backend.onrender.com/api/v1/application/status",
           { params }
         );
 

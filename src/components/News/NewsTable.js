@@ -179,7 +179,7 @@
 //                 </td>
 
 //                 <td className="px-4 py-2 border-b">
-//                   <img src={`http://localhost:5000/${item?.image}`} width={70} height={50} />
+//                   <img src={`https://zerohour-backend.onrender.com/${item?.image}`} width={70} height={50} />
 //                 </td>
 
 //                 <td className="px-4 py-2 border-b">{item?.excerpt}</td>
@@ -402,7 +402,7 @@ const NewsTable = () => {
     setEditorContent(item.content);
     setValue("content", item.content);
 
-    setImage(item.image ? `http://localhost:5000/${item.image}` : null);
+    setImage(item.image ? `https://zerohour-backend.onrender.com/${item.image}` : null);
 
     document.getElementById("news_modal").showModal();
   };
@@ -540,7 +540,7 @@ const NewsTable = () => {
                 <td className="px-4 py-2 border-b">
                   {item.image && (
                     <img
-                      src={`http://localhost:5000/${item.image}`}
+                      src={`https://zerohour-backend.onrender.com/${item.image}`}
                       width={70}
                       height={50}
                       className="rounded"

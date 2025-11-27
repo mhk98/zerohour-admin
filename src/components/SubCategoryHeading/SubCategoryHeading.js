@@ -62,7 +62,7 @@ function SubCategoryHeading() {
     const fetchCategories = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/v1/category`
+          `https://zerohour-backend.onrender.com/api/v1/category`
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");

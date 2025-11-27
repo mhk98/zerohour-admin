@@ -151,7 +151,7 @@ export default function FeatureTable() {
                     <td className="p-3 whitespace-nowrap">
                       <img
                         className="w-10 h-10 object-cover"
-                        src={`http://localhost:5000${item.image}`}
+                        src={`https://zerohour-backend.onrender.com${item.image}`}
                         alt="Feature"
                       />
                     </td>

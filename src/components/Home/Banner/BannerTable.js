@@ -207,7 +207,7 @@ const BannerTable = () => {
                           imageFiles.map((file) => (
                             <img
                               key={file}
-                              src={`http://localhost:5000/media/${file}`}
+                              src={`https://zerohour-backend.onrender.com/media/${file}`}
                               alt="Banner"
                               className="h-10 w-10 rounded object-cover flex-shrink-0"
                             />
@@ -308,7 +308,7 @@ const BannerTable = () => {
                       imgs.map((file) => (
                         <img
                           key={file}
-                          src={`http://localhost:5000/media/${file}`} // Change to your real image URL base
+                          src={`https://zerohour-backend.onrender.com/media/${file}`} // Change to your real image URL base
                           alt="Existing banner"
                           className="h-16 w-16 object-cover rounded"
                         />

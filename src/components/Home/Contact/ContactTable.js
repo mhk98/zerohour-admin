@@ -51,7 +51,7 @@ export default function ContactTable() {
         location: item.location,
       });
       setSelectedId(item.id);
-      setPreviewImage(`http://localhost:5000${item.image}`);
+      setPreviewImage(`https://zerohour-backend.onrender.com${item.image}`);
     } else {
       reset();
       setSelectedId(null);
@@ -153,7 +153,7 @@ export default function ContactTable() {
                     <td className="p-3 whitespace-nowrap">{item.location}</td>
                     <td className="p-3 whitespace-nowrap">
                       <img
-                        src={`http://localhost:5000${item.image}`}
+                        src={`https://zerohour-backend.onrender.com${item.image}`}
                         alt={item.branch}
                         className="w-12 h-12 object-cover rounded"
                       />

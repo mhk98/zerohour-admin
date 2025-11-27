@@ -8,7 +8,7 @@ const getAuthToken = () => {
 export const NewsApi = createApi({
   reducerPath: "NewsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api/v1/",
+    baseUrl: "https://zerohour-backend.onrender.com/api/v1/",
 
     // This will attach the token to every request that requires authorization
     prepareHeaders: (headers) => {
